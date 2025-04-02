@@ -1519,7 +1519,8 @@
    ln_ens_rst_in   = .FALSE.   ! #SLX! use ensemble (T) or single (F) input restart file
    nn_ens_size     = 1    ! #SLX! ensemble size [number always between 22-24 columns; eg. 9 or 99 or 999]
    nn_ens_start    = 1    ! #SLX! index of first ensemble member [number always between 22-24 columns; eg. 9 or 99 or 999; DEBUG member 100]
-
+   ln_ens_diag     = .false.  ! #SLX! ens diag switch
+   ln_sto_atmo     = .false.  ! #SLX! ! switch to use one set of perturbed atmospheric fields per ensemble member
 /
 !-----------------------------------------------------------------------
 &namctl        !   Control prints                                       (default: OFF)
