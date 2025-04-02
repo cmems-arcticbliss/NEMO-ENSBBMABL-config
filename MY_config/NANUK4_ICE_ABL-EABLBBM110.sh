@@ -1,17 +1,18 @@
 #!/bin/bash
 
-#NCM_DIR="${HOME}/DEV/nemo_conf_manager"
 # SLX
 NCM_DIR="${WORK}/DEVGIT/nemo_conf_manager"
 
-ABLDIR="/lustre/fsn1/projects/rech/cli/regi915/DATA/NANUK4/DATASETS/atmo_forcing/ERA5_ABL_from_GS/1h"
+# SLX PATH to the atmospheric ABL forcing files on SCRATCH
+ABLDIR="${ALL_CCFRSCRATCH}/DATA/NANUK4/DATASETS/atmo_forcing/ERA5_ABL_from_GS/1h"
 i_skip_link_restarts=0
 
-myRSTDIR="/lustre/fsn1/projects/rech/cli/regi915/NEMO/NANUK4/NANUK4_ICE_ABL-EABLBBM000-R/00004800_perturbed/"
+# SLX PATH to the perturbed restarts on SCRATCH
+myRSTDIR="${ALL_CCFRSCRATCH}/NEMO/NANUK4/NANUK4_ICE_ABL-EABLBBM000-R/00004800_perturbed/"
 
 # Getting a lot of info from the HOSTS.bash file:
+# SLX : make sure those files have been edited once for all to fit your environment
 . ${NCM_DIR}/CONFS/HOSTS.bash
-
 . ${NCM_DIR}/misc/lb_functions.sh
 
 MOD_TO_LOAD=""
@@ -28,29 +29,30 @@ iagr=0 ; NST_RAT=0 ; CONF_NST="" ; # AGRIF? + resolution ratio CHILD/MOTHER
 itst=0 ; # testcase or real config?
 isabl=1 ; # ABL or not?
 
-# namelist
-LNABL="true"
-LNBLK="false"
+# parameters in namelist_cfg
+LNABL="true"    # ABL ON?
+LNBLK="false"   # BLK instead of ABL?
+RSTABL="true"   # ABL restarted from restarts?
+CDice="1.85e-3"  # air-ice drag coeff
+# stochastic part
+LNENS="true"     # ensemble simulation?
+LNENSRST="true"  # start from ensemble restart?
+LNSTOEOS="false" # stochastic equation of state?
+MEMBER0=1        # first member to run in parallel
+MEMBERN=2       # last member to run in parallel
 
-RSTABL="true"
-
-# namelist_ice
-LNEVP="false"
-LNBBM="true"
-LNDAM="true"
-CDice="1.85e-3"
-
-# stochastic part (in namelist_cfg)
-LNENS="true"
-LNENSRST="true"
-LNSTOEOS="false"
-MEMBER0=1
-MEMBERN=20
+# deduce the number of members to run in parallel
 NMEMBER=$(( MEMBERN - MEMBER0 + 1 ))
 echo "NMEMBER = $NMEMBER"
 
-perturbnam=l500_std50_interplinear_perturbed_lgrid10sm3_SD1800.nc
+# parameters in namelist_ice
+LNEVP="false"    # EVP rheology?
+LNBBM="true"     # BBM rheology?
+LNDAM="true"     # damage parameter on? (set to true if BBM)
+
+# Set which perturbed retsart to use
 myRSTIT=1800
+perturbnam=l500_std10_interplinear_perturbed_lgrid10sm3_SD${myRSTIT}.nc
 myRSTPREFIX="NANUK4_ICE_ABL-EABLBBM000_0000"
 
 
@@ -77,31 +79,29 @@ IDEBUG=1
 
 init_ice=0  # SLX ; # (if isi3==1) set to `1` if you want to initialize sea-ice frome netCDF fields, 0 otherwize!
 
+
+# SLX: prefix of Atmsopheric forcing files (from LB)
 NM_ATM_FORC="ERA5_Arctic"
 
+# SLX: NEMO code to use
 NEMOv="4.2.2"     ; crdt='rn_Dt'  ; naaa=4
+# SLX: NEMO config code to use
 CID="_ENSBBMABL"
 
 
 # Time stuff:
 Y1=1997 ; Y2=1997
-#M1=1    ; # start month of year Y1
 M1=1   ; # start month of year Y1
-#
-LENGTH_SEG="10d" ;
-#LENGTH_SEG="49d" ; # something like "1d", "5d", "10d", "15d", "1m", "3m", "6m", or "1y"
-RESTRT_FRQ="10d" ; # something like "1d", "5d", "10d", "15d", "1m", "3m", "6m", or "1y"
-#LENGTH_SEG="10d" ; # something like "1d", "5d", "10d", "15d", "1m", "3m", "6m", or "1y"
-#RESTRT_FRQ="10d" ; # something like "1d", "5d", "10d", "15d", "1m", "3m", "6m", or "1y"
+# SLX: for how long to run the model?
+LENGTH_SEG="3d" ;
+RESTRT_FRQ="3d" ; #frequency of restart outputs# something like "1d", "5d", "10d", "15d", "1m", "3m", "6m", or "1y"
 
+# which xml files to consider to set the outputs
 xios_freq_oce="prodArcticBLISS"
 xios_freq_ice="prodArcticBLISS"
-#xios_freq_oce="1d"
-#xios_freq_ice="prodSLX"
 
-
+# time limit of the run (SLX: 1h20 works for 10d in Arctic-BLISS)
 TJOB="01:20:00" # Max wall length for the job
-#TJOB="00:55:00" # Max wall length for the job
 
 IBC="GLORYS2V4" ; # origin of 3D initial condition fields for cold start...
 BDY="GLORYS2V4" ; # origin of lateral BC fields if relevant...
