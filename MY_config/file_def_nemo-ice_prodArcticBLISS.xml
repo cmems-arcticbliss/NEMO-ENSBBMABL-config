@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!-- $id$ -->
+
+<!--
+============================================================================================================
+=                                           output files definition                                        =
+=                                      Define your own files for sea ice                                   =
+=                                         put the variables you want...                                    =
+=
+=    DT must be 600 secons so that `3ts` means 30 minutes !!!
+============================================================================================================
+-->
+
+<file_definition type="one_file" name="{SAVDIR}/@expname@_@freq@_@startdate@_@enddate@" sync_freq="1d" min_digits="4">
+
+
+<!-- ===================== 1H AVERAGED OUTPUTS ==================================== -->	
+  <file_group id="1h" output_freq="1h"  output_level="10" enabled=".true.">  <!-- 1h files -->
+	  
+     <file id="file21" name_suffix="_icemod" description="ice variables" enabled=".true." >
+      <!-- general -->
+      <field field_ref="iceconc"          name="siconc"  operation="average"   />
+      <field field_ref="icethic"          name="sithic"  operation="average"  />
+      <field field_ref="icevolu"          name="sivolu"  operation="average"   />
+
+      <!-- momentum -->
+      <field field_ref="uice"             name="u_ice-u"  operation="average"  />
+      <field field_ref="vice"             name="v_ice-v"  operation="average"  />
+      <field field_ref="icevel"           name="sivelo-t" operation="average"  />
+
+      <!-- damage -->
+      <field field_ref="icedmgt"          name="damage-t" operation="average"  /> 
+
+      <field field_ref="icedeft"          name="sidefo-t" operation="average"     />
+      <field field_ref="taum_ai"                         operation="average"      />
+      <field field_ref="utau_ai"                         operation="average"      />
+      <field field_ref="vtau_ai"                         operation="average"      />
+      <field field_ref="normstr"                         operation="average"      />
+      <field field_ref="sheastr"                         operation="average"      />
+      <field field_ref="icediv"                          operation="average"      />
+      <field field_ref="icedivt"                          operation="average"    />
+      <field field_ref="icevort"                          operation="average"    />
+      <field field_ref="iceshe"                          operation="average"     />
+      <field field_ref="iceshet"                          operation="average"    />
+      <!-- heat fluxes -->
+      <field field_ref="qns_ice"                         operation="average"     />
+      <field field_ref="qemp_ice"                        operation="average"     />
+      <field field_ref="qns_to_atmo"                     operation="average"     />
+      <field field_ref="qlw_ice"                         operation="average"     />
+</file>
+
+  </file_group>
+
+      <!-- ===================== 6H INSTANT OUTPUTS ==================================== -->
+<file_group id="6h" output_freq="6h"  output_level="10" enabled=".true.">  <!-- 6h files -->
+    <file id="file31" name_suffix="_icemod" description="ice variables" enabled=".true." >
+      <!-- general -->
+      <field field_ref="iceconc"          name="siconc"  operation="instant" freq_op="6h"   />
+      <field field_ref="icethic"          name="sithic"  operation="instant" freq_op="6h"  />
+      <field field_ref="icevolu"          name="sivolu"  operation="instant" freq_op="6h"   />
+
+      <!-- momentum -->
+      <field field_ref="uice"             name="u_ice-u"  operation="instant" freq_op="6h"  />
+      <field field_ref="vice"             name="v_ice-v"  operation="instant" freq_op="6h"  />
+      <field field_ref="icevel"           name="sivelo-t" operation="instant" freq_op="6h"  />
+
+      <!-- damage -->
+      <field field_ref="icedmgt"          name="damage-t" operation="instant" freq_op="6h"  />
+
+      <field field_ref="icedeft"          name="sidefo-t" operation="instant" freq_op="6h"     />
+      <field field_ref="taum_ai"                         operation="instant" freq_op="6h"      />
+      <field field_ref="utau_ai"                         operation="instant" freq_op="6h"      />
+      <field field_ref="vtau_ai"                         operation="instant" freq_op="6h"      />
+      <field field_ref="normstr"                         operation="instant" freq_op="6h"      />
+      <field field_ref="sheastr"                         operation="instant" freq_op="6h"      />
+      <field field_ref="icediv"                          operation="instant" freq_op="6h"      />
+      <field field_ref="icedivt"                         operation="instant" freq_op="6h"    />
+      <field field_ref="icevort"                         operation="instant" freq_op="6h"    />
+      <field field_ref="iceshe"                          operation="instant" freq_op="6h"     />
+      <field field_ref="iceshet"                         operation="instant" freq_op="6h"    />
+      <!-- heat fluxes -->
+      <field field_ref="qns_ice"                         operation="instant" freq_op="6h"     />
+      <field field_ref="qemp_ice"                        operation="instant" freq_op="6h"     />
+      <field field_ref="qns_to_atmo"                     operation="instant" freq_op="6h"     />
+      <field field_ref="qlw_ice"                         operation="instant" freq_op="6h"     />
+</file>
+  </file_group>
+
+<!-- ===================== 1D AVERAGED OUTPUTS ==================================== -->
+  <file_group id="1d" output_freq="1d"  output_level="10" enabled=".true.">  <!-- 1d files -->
+
+    <file id="file41" name_suffix="_icemod" description="ice variables" enabled=".true." >
+      <!-- general -->
+      <field field_ref="iceconc"          name="siconc"  operation="average"  />
+      <field field_ref="icethic"          name="sithic"  operation="average"  />
+      <field field_ref="icevolu"          name="sivolu"  operation="average"   />
+
+      <!-- momentum -->
+      <field field_ref="uice"             name="u_ice-u"  operation="average"  />
+      <field field_ref="vice"             name="v_ice-v"  operation="average"  />
+      <field field_ref="icevel"           name="sivelo-t" operation="average"  />
+
+      <!-- damage -->
+      <field field_ref="icedmgt"          name="damage-t" operation="average"  /> -->
+
+      <field field_ref="icedeft"          name="sidefo-t" operation="average"     />
+      <field field_ref="taum_ai"                         operation="average"      />
+      <field field_ref="utau_ai"                         operation="average"      />
+      <field field_ref="vtau_ai"                         operation="average"      />
+      <field field_ref="normstr"                         operation="average"      />
+      <field field_ref="sheastr"                         operation="average"      />
+      <field field_ref="icediv"                          operation="average"      />
+      <field field_ref="icedivt"                          operation="average"     />
+      <field field_ref="icevort"                          operation="average"     />
+      <field field_ref="iceshe"                          operation="average"      />
+      <field field_ref="iceshet"                          operation="average"     />
+      <!-- heat fluxes -->
+      <field field_ref="qlw_ice"                         operation="average"     />
+      <field field_ref="qns_ice"                         operation="average"     />
+      <field field_ref="qemp_ice"                        operation="average"     />
+      <field field_ref="qns_to_atmo"                     operation="average"     />
+    </file>
+
+  </file_group>
+
+
+  <file_group id="2h"  output_freq="2h"  output_level="10" enabled=".TRUE."/> <!-- 2h files -->
+  <file_group id="3h"  output_freq="3h"  output_level="10" enabled=".TRUE."/> <!-- 3h files -->
+  <file_group id="4h"  output_freq="4h"  output_level="10" enabled=".TRUE."/> <!-- 4h files -->
+  <file_group id="2m"  output_freq="2mo" output_level="10" enabled=".TRUE."/> <!-- real 2m files -->
+  <file_group id="3m"  output_freq="3mo" output_level="10" enabled=".TRUE."/> <!-- real 3m files -->
+  <file_group id="4m"  output_freq="4mo" output_level="10" enabled=".TRUE."/> <!-- real 4m files -->
+  <file_group id="6m"  output_freq="6mo" output_level="10" enabled=".TRUE."/> <!-- real 6m files -->
+  <file_group id="1y"  output_freq="1y"  output_level="10" enabled=".TRUE."/> <!-- real yearly files -->
+  <file_group id="2y"  output_freq="2y"  output_level="10" enabled=".TRUE."/> <!-- real 2y files -->
+  <file_group id="5y"  output_freq="5y"  output_level="10" enabled=".TRUE."/> <!-- real 5y files -->
+  <file_group id="10y" output_freq="10y" output_level="10" enabled=".TRUE."/> <!-- real 10y files -->
+
+</file_definition>

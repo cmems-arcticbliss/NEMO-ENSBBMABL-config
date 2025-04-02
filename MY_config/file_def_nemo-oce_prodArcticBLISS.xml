@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+
+<!--
+============================================================================================================
+=                                           output files definition                                        =
+=                                            Define your own filesfor ocean dynamics context               =
+=                                         put the variables you want...                                    =
+============================================================================================================
+-->
+
+<file_definition type="one_file" name="{SAVDIR}/@expname@_@freq@_@startdate@_@enddate@" sync_freq="1d" min_digits="4">
+
+
+
+<!-- ======================== 1d AVERAGED OUTPUTS ==================== -->
+<file_group id="1d" output_freq="1d"  output_level="10" enabled=".TRUE.">  <!-- 1d files -->
+
+  <file id="file11" name_suffix="_grid_T" description="ocean T grid variables" >
+      <field field_ref="toce"         name="thetao"                                            operation="average"  > @toce_e3t / @e3t </field>
+      <field field_ref="soce"         name="so"                                                 operation="average"  > @soce_e3t / @e3t </field>
+      <field field_ref="sst"          name="tos"     operation="average"    />
+      <field field_ref="sss"          name="sos"     operation="average"   />
+      <field field_ref="ssh"          name="zos"     operation="average"  />
+      <field field_ref="mldr10_1"                    operation="average"  />
+      <field field_ref="empmr"        name="wfo"     operation="average"    />
+      <field field_ref="precip"       name="precip"  operation="average"   />
+      <field field_ref="Cd_oce"       name="Cd_oce"  operation="average"   />
+      <field field_ref="snowpre"                     operation="average"  />
+      <field field_ref="taum"         name="taum"    operation="average"    />
+      <field field_ref="taum_oce"     name="taum_oce" operation="average"    />
+      <field field_ref="wspd"         name="windsp"  operation="average"    />
+      <field field_ref="qns"                         operation="average"    />
+      <field field_ref="qns_oce"      name="qns_oce" operation="average"    />
+      <field field_ref="qemp_oce"                    operation="average"     />
+  </file>
+
+  <file id="file12" name_suffix="_grid_U" description="ocean U grid variables" enabled=".TRUE.">
+      <field field_ref="ssu"          name="uos"     operation="average"   />
+      <field field_ref="utau"         name="tauuo"   operation="average"   />
+  </file>
+  
+  <file id="file13" name_suffix="_grid_V" description="ocean V grid variables" enabled=".TRUE.">
+      <field field_ref="ssv"          name="vos"     operation="average"   />
+      <field field_ref="vtau"         name="tauvo"   operation="average"   />
+  </file>
+
+  <file id="file18" name_suffix="_ABL" description="ABL1D variables" enabled=".true." >
+      <field field_ref="u_abl"         name="u_abl"  operation="average" />
+      <field field_ref="v_abl"         name="v_abl"  operation="average" />
+      <field field_ref="t_abl"         name="t_abl"  operation="average"  />
+      <field field_ref="q_abl"         name="q_abl"  operation="average"  />
+      <field field_ref="pblh"          name="pblh"   operation="average"  />
+  </file>
+ 
+</file_group>
+
+
+<!-- ======================== 1h AVERAGED OUTPUTS ==================== -->
+  <file_group id="1h" output_freq="1h"  output_level="10" enabled=".TRUE.">  <!-- 1h files -->
+      
+  <file id="file108" name_suffix="_ABL" description="ABL1D variables" enabled=".true." >
+      <field field_ref="uz1_abl"         name="uz1_abl"  operation="average" />
+      <field field_ref="vz1_abl"         name="vz1_abl"  operation="average" />
+      <field field_ref="tz1_abl"         name="tz1_abl"  operation="average"  />
+      <field field_ref="qz1_abl"         name="qz1_abl"  operation="average"  />
+      <field field_ref="pblh"            name="pblh"     operation="average"  />
+  </file>
+ 
+    <file id="file101" name_suffix="_grid_T" description="ocean T grid variables" enabled=".TRUE." >
+      <field field_ref="sst"          name="tos"     operation="average"    />
+      <field field_ref="sss"          name="sos"     operation="average"    />
+      <field field_ref="taum"         name="taum"    operation="average"    />
+      <field field_ref="taum_oce"     name="taum_oce" operation="average"   />
+      <field field_ref="wspd"         name="windsp"  operation="average"    />
+      <field field_ref="qns"                         operation="average"    />
+      <field field_ref="qns_oce"                     operation="average"    />
+      <field field_ref="qemp_oce"                    operation="average"    />
+  </file>
+  
+   <file id="file118" name_suffix="_grid_U" description="ocean U grid variables" enabled=".TRUE.">
+      <field field_ref="ssu"          name="uos"      operation="average"   />
+      <field field_ref="utau"         name="tauuo"    operation="average"   />
+    </file>
+    
+    <file id="file119" name_suffix="_grid_V" description="ocean V grid variables" enabled=".TRUE.">
+      <field field_ref="ssv"          name="vos"      operation="average"   />
+      <field field_ref="vtau"         name="tauvo"    operation="average"   />
+    </file> 
+
+</file_group>
+
+<!-- ======================== 6h INSTANT OUTPUTS ==================== -->
+<file_group id="6h"  output_freq="6h"  output_level="10" enabled=".TRUE."> <!-- 6h files -->
+
+   <file id="file617" name_suffix="_ABL" description="ABL1D variables" enabled=".true." >
+      <field field_ref="u_abl"         name="u_abl"  operation="instant" freq_op="6h"/>
+      <field field_ref="v_abl"         name="v_abl"  operation="instant" freq_op="6h"/>
+      <field field_ref="t_abl"         name="t_abl"  operation="instant" freq_op="6h" />
+      <field field_ref="q_abl"         name="q_abl"  operation="instant" freq_op="6h" />
+      <field field_ref="pblh"          name="pblh"   operation="instant" freq_op="6h" />
+   </file>
+
+    <file id="file601" name_suffix="_grid_T" description="ocean T grid variables" enabled=".TRUE." >
+      <field field_ref="sst"          name="tos"     operation="instant" freq_op="6h"    />
+      <field field_ref="sss"          name="sos"     operation="instant" freq_op="6h"    />
+      <field field_ref="taum"         name="taum"    operation="instant" freq_op="6h"    />
+      <field field_ref="taum_oce"     name="taum_oce" operation="instant" freq_op="6h"   />
+      <field field_ref="wspd"         name="windsp"   operation="instant" freq_op="6h"    />
+      <field field_ref="qns"                          operation="instant" freq_op="6h"    />
+      <field field_ref="qns_oce"                      operation="instant" freq_op="6h"    />
+      <field field_ref="qemp_oce"                     operation="instant" freq_op="6h"    />
+  </file>
+
+  <file id="file618" name_suffix="_grid_U" description="ocean U grid variables" enabled=".TRUE.">
+      <field field_ref="ssu"          name="uos"      operation="instant" freq_op="6h"   />
+      <field field_ref="utau"         name="tauuo"    operation="instant" freq_op="6h"   />
+  </file>
+
+  <file id="file619" name_suffix="_grid_V" description="ocean V grid variables" enabled=".TRUE.">
+      <field field_ref="ssv"          name="vos"      operation="instant" freq_op="6h"   />
+      <field field_ref="vtau"         name="tauvo"    operation="instant" freq_op="6h"   />
+  </file>
+
+</file_group>
+
+  <file_group id="1ts" output_freq="1ts" output_level="10" enabled=".TRUE."/> <!-- 1 time step files -->
+  <file_group id="2h"  output_freq="2h"  output_level="10" enabled=".TRUE."/> <!-- 2h files -->
+  <file_group id="3h"  output_freq="3h"  output_level="10" enabled=".TRUE."/> <!-- 3h files -->
+  <file_group id="4h"  output_freq="4h"  output_level="10" enabled=".TRUE."/> <!-- 4h files -->
+  <file_group id="2m"  output_freq="2mo" output_level="10" enabled=".TRUE."/> <!-- real 2m files -->
+  <file_group id="3m"  output_freq="3mo" output_level="10" enabled=".TRUE."/> <!-- real 3m files -->
+  <file_group id="4m"  output_freq="4mo" output_level="10" enabled=".TRUE."/> <!-- real 4m files -->
+  <file_group id="6m"  output_freq="6mo" output_level="10" enabled=".TRUE."/> <!-- real 6m files -->
+  <file_group id="2y"  output_freq="2y"  output_level="10" enabled=".TRUE."/> <!-- real 2y files -->
+  <file_group id="5y"  output_freq="5y"  output_level="10" enabled=".TRUE."/> <!-- real 5y files -->
+  <file_group id="10y" output_freq="10y" output_level="10" enabled=".TRUE."/> <!-- real 10y files -->
+
+</file_definition>
