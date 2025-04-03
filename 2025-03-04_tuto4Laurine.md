@@ -1,5 +1,7 @@
 Purpose: Tutorial to help Laurine start with our Arctic-BLISS NEMO-SI3+ABL config on Jean-Zay@IDRIS.
 
+---
+
 ### On JZ: Make sure you have the same environment as me on JZ (important for later compilation of the codes)
 ```
 # TO COMPILE XIOS and NEMO 24th of AUG 2023
